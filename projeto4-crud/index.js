@@ -34,7 +34,7 @@ app.post('/alunos', aluno.create);
 app.get('/alunos', aluno.findAll);
 app.get('/alunos/:alunoId', aluno.findOne);
 app.put('/alunos/:alunoId', aluno.update);
-app.delete('/aluno/:alunoId', aluno.delete)
+app.delete('/alunos/:alunoId', aluno.delete)
 // app.get('/', (req, res)=>{
 //     res.json({"message": "Bem-vindo ao nosso primeiro App com BD"})
 // })

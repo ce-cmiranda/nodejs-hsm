@@ -3,13 +3,14 @@ const Aluno = require('../models/aluno.models');
 
 exports.create = (req, res) => {
     console.log(req.body)
-    console.log(json(req.body))
+    // console.log(json(req.body))
     if(!req.body){
         return res.status(400).send({
             "message": "Necessários informar o aluno e a média1"
         });
     }
 
+    
     const aluno = new Aluno({
         nome: req.body.nome || "Nome não informado",
         media: req.body.media,
@@ -38,6 +39,7 @@ exports.findAll = (req, res) =>{
 
 exports.findOne = (req, res) => {
     Aluno.findById(req.params.alunoId)
+    
     .then(aluno =>{
         if(!aluno){
             return res.status(404).send({
@@ -66,10 +68,11 @@ exports.update = (req, res) => {
     }
 
     Aluno.findByIdAndUpdate(req.params.alunoId,{
-        title: req.body.nome || "Nome não informado",
+        nome: req.body.nome || "Nome não informado",
         media: req.body.media
     }, {new: true})
     .then(aluno => {
+        print(console.log(aluno))
         if(!aluno){
             return res.status(404).send({
                 message: "Aluno não pode ser encontrado " + req.params.alunoId
@@ -88,9 +91,11 @@ exports.update = (req, res) => {
     });
 }
 
+
 exports.delete = (req, res) => {
-    aluno.findByIdAndRemove(req.params.alunoId)
+    Aluno.findByIdAndRemove(req.params.alunoId)
     .then(aluno =>{
+        print(aluno)
         if(!aluno){
             return res.status(404).send({
                 message: "Aluno não encontrado " + req.params.alunoId
